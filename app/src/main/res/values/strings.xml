@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Game App</string>
+    <string name="start">Start Game</string>
+    <string name="enter_nickname">Enter Nickname</string>
+    <string name="score">Score: %1$d</string>
+    <string-array name="games">
+        <item>Quick Quiz</item>
+        <item>Flag Memory</item>
+    </string-array>
+    <string name="target_flag_list">Target Flag List</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

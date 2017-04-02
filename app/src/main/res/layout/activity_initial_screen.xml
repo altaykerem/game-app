@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_init_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hp.gameapp.InitialScreen">
+
+    <EditText
+        android:id="@+id/enter_nickname"
+        android:hint="@string/enter_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        />
+    <Button
+        android:text="@string/start"
+        android:id="@+id/start_game"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enter_nickname"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/high_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:minEms="8"
+        android:layout_margin="10dp"
+        android:text="@string/score"
+        android:gravity="end"
+        android:layout_toEndOf="@id/enter_nickname"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/enter_nickname" />
+</RelativeLayout>
+
