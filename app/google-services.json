@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "835782051225",
+    "firebase_url": "https://gameapp-ca05e.firebaseio.com",
+    "project_id": "gameapp-ca05e",
+    "storage_bucket": "gameapp-ca05e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835782051225:android:724ecb6d1b4abf0a",
+        "android_client_info": {
+          "package_name": "com.example.hp.gameapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835782051225-7nkc65q6cjom12fj1r9ta2vphj7p8p9k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hp.gameapp",
+            "certificate_hash": "f1cb3e89c44f21c176b9a6f1e6dd4792e4334225"
+          }
+        },
+        {
+          "client_id": "835782051225-h1j6l18adcmitpd5tsp6np54hlrk944k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh0VoNLVZDPWQgzqz1JvrvuCmwsDfydgg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835782051225-h1j6l18adcmitpd5tsp6np54hlrk944k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

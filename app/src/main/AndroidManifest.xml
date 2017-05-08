@@ -19,7 +19,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".FlagMemory.MemoryGameActivity" />
         <activity android:name=".QuickQuiz.QuickQuizActivity" />
-        <activity android:name=".QuickQuiz.QuestionActivity"></activity>
+        <activity android:name=".QuickQuiz.QuestionActivity" />
+        <activity android:name=".Register"></activity>
     </application>
 
 </manifest>
