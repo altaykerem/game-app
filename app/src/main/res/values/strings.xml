@@ -6,6 +6,7 @@
     <string-array name="games">
         <item>Quick Quiz</item>
         <item>Flag Memory</item>
+        <item>Log Out</item>
     </string-array>
     <string name="target_flag_list">Target Flag List</string>
 
@@ -16,4 +17,7 @@
     <string name="password">password</string>
     <string name="location">location</string>
     <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="login_mail">Enter Mail</string>
+    <string name="login_password">Enter Password</string>
 </resources>

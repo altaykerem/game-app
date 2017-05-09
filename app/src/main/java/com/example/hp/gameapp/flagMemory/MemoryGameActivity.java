@@ -1,4 +1,4 @@
-package com.example.hp.gameapp.FlagMemory;
+package com.example.hp.gameapp.flagMemory;
 
 import android.app.Activity;
 import android.content.Intent;

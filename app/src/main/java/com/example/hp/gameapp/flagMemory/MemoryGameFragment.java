@@ -1,7 +1,6 @@
-package com.example.hp.gameapp.FlagMemory;
+package com.example.hp.gameapp.flagMemory;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;

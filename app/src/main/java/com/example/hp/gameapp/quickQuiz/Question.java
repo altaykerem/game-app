@@ -1,4 +1,4 @@
-package com.example.hp.gameapp.QuickQuiz;
+package com.example.hp.gameapp.quickQuiz;
 
 import android.os.Parcel;
 import android.os.Parcelable;
