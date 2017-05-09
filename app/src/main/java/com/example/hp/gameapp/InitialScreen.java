@@ -22,8 +22,10 @@ public class InitialScreen extends AppCompatActivity {
 
         nickNameField = (EditText) findViewById(R.id.enter_nickname);
         Button startButton = (Button) findViewById(R.id.start_game);
+        Button registerButton = (Button) findViewById(R.id.register_button);
         TextView scoreView = (TextView) findViewById(R.id.high_score);
         User user = coming.getParcelableExtra("user");
+
         int score;
         if(user==null){
             score = 0;
@@ -47,6 +49,14 @@ public class InitialScreen extends AppCompatActivity {
                     startActivity(i);
                 }
 
+            }
+        });
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(InitialScreen.this, Register.class);
+                startActivity(i);
             }
         });
     }

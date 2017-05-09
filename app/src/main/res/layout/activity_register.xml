@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,9 +11,9 @@
         android:id="@+id/sign_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:textSize="20sp"
-        android:hint="@string/username"/>
+        android:hint="@string/username"
+        android:inputType="text"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/sign_mail"
@@ -36,7 +35,13 @@
         android:id="@+id/sign_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
+        android:inputType="textAutoCorrect"
         android:textSize="20sp"
         android:hint="@string/location"/>
+    <Button
+        android:id="@+id/register_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:onClick="onSignUp"/>
 </LinearLayout>

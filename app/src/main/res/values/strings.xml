@@ -15,4 +15,5 @@
     <string name="enter_mail">enter mail</string>
     <string name="password">password</string>
     <string name="location">location</string>
+    <string name="register">Register</string>
 </resources>
