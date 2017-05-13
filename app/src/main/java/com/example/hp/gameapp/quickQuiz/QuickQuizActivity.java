@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 
 import com.example.hp.gameapp.R;
-import com.example.hp.gameapp.User;
+import com.example.hp.gameapp.Session;
 
 public class QuickQuizActivity extends Activity{
 
@@ -19,7 +19,7 @@ public class QuickQuizActivity extends Activity{
 
         Intent intent = getIntent();
         int gameID = (int) intent.getExtras().get("gameID");
-        User user = intent.getParcelableExtra("user");
+        Session session = intent.getParcelableExtra("session");
         fromQuestion = intent.getBooleanExtra("from_question", false);
         boolean result = intent.getBooleanExtra("result", false);
         int lastCategory = intent.getIntExtra("category_index",-1);
@@ -31,7 +31,7 @@ public class QuickQuizActivity extends Activity{
 
         QuickQuizFragment gf = (QuickQuizFragment) getFragmentManager().findFragmentById(R.id.quick_frag);
         gf.setGameID(gameID);
-        gf.setUser(user);
+        gf.setUser(session);
         gf.setResult(result);
         gf.setFromQuestion(fromQuestion);
         gf.setCategoryIndex(lastCategory);

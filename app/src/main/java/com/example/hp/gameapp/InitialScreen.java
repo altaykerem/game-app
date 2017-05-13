@@ -69,14 +69,14 @@ public class InitialScreen extends AppCompatActivity {
         }
         loader.show();
 
-        //authenticate user
+        //authenticate session
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(InitialScreen.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // If sign in fails, display a message to the session. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
+                        // signed in session can be handled in the listener.
                         loader.setVisibility(View.GONE);
                         if (!task.isSuccessful()) {
                             // there was an error

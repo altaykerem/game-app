@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.hp.gameapp.R;
-import com.example.hp.gameapp.User;
+import com.example.hp.gameapp.Session;
 
 public class QuestionActivity extends Activity {
 
@@ -16,14 +16,14 @@ public class QuestionActivity extends Activity {
 
         Intent intent = getIntent();
         int gameID = (int) intent.getExtras().get("gameID");
-        User user = intent.getParcelableExtra("user");
+        Session session = intent.getParcelableExtra("session");
         Question question = intent.getParcelableExtra("question");
         int lastCategory = intent.getIntExtra("category_index",-1);
         int lastQuestion = intent.getIntExtra("question_index",-1);
 
         QuestionFragment gf = (QuestionFragment) getFragmentManager().findFragmentById(R.id.question_fragment);
         gf.setGameID(gameID);
-        gf.setUser(user);
+        gf.setSession(session);
         gf.setQuestion(question);
         gf.setCategoryIndex(lastCategory);
         gf.setQuestionIndex(lastQuestion);

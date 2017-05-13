@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.example.hp.gameapp.InitialScreen;
 import com.example.hp.gameapp.R;
-import com.example.hp.gameapp.User;
+import com.example.hp.gameapp.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,6 @@ public class QuickQuizFragment extends Fragment {
     ArrayList<Category> categorizedQuestions = CategorizedQCreator.getCategorizedQuestions();
     ArrayList<Integer> states, nextQuestion;
 
-    private User user;
     private long gameID;
     private boolean result, fromQuestion;
     private int categoryIndex, questionIndex;
@@ -43,7 +42,7 @@ public class QuickQuizFragment extends Fragment {
         if (view != null) {
             nicknameView = (TextView) view.findViewById(R.id.score);
             categoryLayout = (LinearLayout) view.findViewById(R.id.option_layout);
-            nicknameView.setText(user.getName() + ": " + getString(R.string.score, user.getScore()));
+            //nicknameView.setText(user.getName() + ": " + getString(R.string.score, user.getScore()));
         }
         if(states == null){
             states = new ArrayList<>();
@@ -91,7 +90,7 @@ public class QuickQuizFragment extends Fragment {
     private void checkGame(){
         if(!checkAvailable()) {
             Intent toStart = new Intent(getActivity(), InitialScreen.class);
-            toStart.putExtra("user",user);
+            //toStart.putExtra("user",user);
             startActivity(toStart);
         }
     }
@@ -115,17 +114,7 @@ public class QuickQuizFragment extends Fragment {
             if (state == Color.BLUE) return true;
         return false;
     }
-/*
-    int calculateScore(){
-        int total = 0;
-        for (StateButton[] buttonGroup : buttons) {
-            for (int j = 0; j < buttons[0].length; j++)
-                if (buttonGroup[j].getState() == Color.GREEN)
-                    total += 100 * (buttonGroup.length - j);
-        }
-        return total;
-    }
-*/
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -137,7 +126,7 @@ public class QuickQuizFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putLong("gameID", gameID);
-        outState.putParcelable("user", user);
+        //outState.putParcelable("user", user);
         outState.putIntegerArrayList("states", states);
         outState.putIntegerArrayList("next_question", nextQuestion);
     }
@@ -147,7 +136,7 @@ public class QuickQuizFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             gameID = savedInstanceState.getLong("gameID");
-            user = savedInstanceState.getParcelable("user");
+            //user = savedInstanceState.getParcelable("user");
             states = savedInstanceState.getIntegerArrayList("states");
             nextQuestion = savedInstanceState.getIntegerArrayList("next_question");
             setFromQuestion(false);
@@ -166,7 +155,7 @@ public class QuickQuizFragment extends Fragment {
                         QuestionFragment questionFragment = new QuestionFragment();
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         questionFragment.setGameID(gameID);
-                        questionFragment.setUser(user);
+                        //questionFragment.setSession(user);
                         questionFragment.setQuestion(question);
                         questionFragment.setCategoryIndex(cIndex);
                         questionFragment.setQuestionIndex(qIndex);
@@ -179,7 +168,7 @@ public class QuickQuizFragment extends Fragment {
                     }else{
                         Intent intent = new Intent(getActivity(), QuestionActivity.class);
                         intent.putExtra("gameID", (int)gameID);
-                        intent.putExtra("user", user);
+                        //intent.putExtra("user", user);
                         intent.putExtra("question", question);
                         intent.putExtra("category_index", cIndex);
                         intent.putExtra("question_index", qIndex);
@@ -198,8 +187,8 @@ public class QuickQuizFragment extends Fragment {
                 if(questionIndex>0) states.set(categoryIndex, Color.BLUE);
                 else states.set(categoryIndex, Color.GREEN);
                 nextQuestion.set(categoryIndex, nextQuestion.get(categoryIndex) + 1);
-                user.setScore(user.getScore() + 100*nextQuestion.get(categoryIndex));
-                nicknameView.setText(user.getName() + ": " + getString(R.string.score, user.getScore()));
+                //user.setScore(user.getScore() + 100*nextQuestion.get(categoryIndex));
+                //nicknameView.setText(user.getName() + ": " + getString(R.string.score, user.getScore()));
             }else states.set(categoryIndex, Color.RED);
         }
     }
@@ -207,7 +196,7 @@ public class QuickQuizFragment extends Fragment {
     public void setGameID(long gameID) {
         this.gameID = gameID;
     }
-    public void setUser(User user) { this.user = user; }
+    public void setUser(Session session) {  }
     public void setResult(boolean result) { this.result = result; }
     public void setFromQuestion(boolean fromQuestion) {
         this.fromQuestion = fromQuestion;

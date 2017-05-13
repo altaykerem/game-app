@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.hp.gameapp.flagMemory.MemoryGameActivity;
 import com.example.hp.gameapp.flagMemory.MemoryGameFragment;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity implements GameListFragment.GameListListener{
 
     private FirebaseAuth auth;
-    User user;
+    Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements GameListFragment.
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-        user = intent.getParcelableExtra("user");
+        session = intent.getParcelableExtra("session");
         auth = FirebaseAuth.getInstance();
     }
 
@@ -39,33 +40,34 @@ public class MainActivity extends AppCompatActivity implements GameListFragment.
             case 0:
                 f = new QuickQuizFragment();
                 ((QuickQuizFragment)f).setGameID(id);
-                ((QuickQuizFragment)f).setUser(user);
                 respondToFragment(fragmentContainer != null,f,QuickQuizActivity.class, (int) id);
                 break;
             case 1:
                 f = new MemoryGameFragment();
                 ((MemoryGameFragment)f).setGameID(id);
-                ((MemoryGameFragment)f).setUser(user);
                 respondToFragment(fragmentContainer != null,f,MemoryGameActivity.class, (int) id);
                 break;
             case 2:
-                auth.signOut();
                 final DialogFragment newFragment = new LoadFragment();
                 newFragment.show(getFragmentManager(),"loader");
-                // this listener will be called when there is change in firebase user session
-                new FirebaseAuth.AuthStateListener() {
+                FirebaseAuth.AuthStateListener sl = new FirebaseAuth.AuthStateListener() {
                     @Override
                     public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                        newFragment.dismiss();
+
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         if (user == null) {
-                            // user auth state is changed - user is null
+                            // session auth state is changed - session is null
                             // launch login activity
                             startActivity(new Intent(MainActivity.this, InitialScreen.class));
                             finish();
+                        }else{
+                            makeToast("Check internet");
+                            newFragment.dismiss();
                         }
                     }
                 };
+                auth.signOut();
+                auth.addAuthStateListener(sl);
                 break;
         }
     }
@@ -80,8 +82,12 @@ public class MainActivity extends AppCompatActivity implements GameListFragment.
         } else {
             Intent intent = new Intent(this, activity);
             intent.putExtra("gameID",id);
-            intent.putExtra("user", user);
+            intent.putExtra("session", session);
             startActivity(intent);
         }
     }
+    private void makeToast(String note){
+        Toast.makeText(this, note, Toast.LENGTH_SHORT).show();
+    }
+
 }

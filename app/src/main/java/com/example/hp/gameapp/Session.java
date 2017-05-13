@@ -3,7 +3,7 @@ package com.example.hp.gameapp;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class User implements Parcelable{
+public class Session implements Parcelable{
     private String name;
     private int score;
     private int lives;
@@ -11,27 +11,26 @@ public class User implements Parcelable{
 
     private final static int INITIAL_LIVES = 4;
 
-    public User(String name, int score){
-        setName(name);
-        setScore(score);
+    public Session(){
+        setScore(0);
         setLives(INITIAL_LIVES);
     }
 
-    protected User(Parcel in) {
+    protected Session(Parcel in) {
         name = in.readString();
         score = in.readInt();
         lives = in.readInt();
     }
 
-    public static final Creator<User> CREATOR = new Creator<User>() {
+    public static final Creator<Session> CREATOR = new Creator<Session>() {
         @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
+        public Session createFromParcel(Parcel in) {
+            return new Session(in);
         }
 
         @Override
-        public User[] newArray(int size) {
-            return new User[size];
+        public Session[] newArray(int size) {
+            return new Session[size];
         }
     };
 

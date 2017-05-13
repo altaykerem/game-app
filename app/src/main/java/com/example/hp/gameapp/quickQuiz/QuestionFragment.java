@@ -15,8 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.hp.gameapp.R;
+import com.example.hp.gameapp.Session;
 import com.example.hp.gameapp.Timer;
-import com.example.hp.gameapp.User;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class QuestionFragment extends Fragment {
 
-    private User user;
+    private Session session;
     private long gameID;
     private int categoryIndex, questionIndex;
     private ArrayList<Integer> states, nextQuestion;
@@ -130,7 +130,7 @@ public class QuestionFragment extends Fragment {
             QuickQuizFragment quizFragment = new QuickQuizFragment();
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             quizFragment.setGameID(gameID);
-            quizFragment.setUser(user);
+            quizFragment.setUser(session);
             quizFragment.setResult(result);
             quizFragment.setFromQuestion(true);
             quizFragment.setCategoryIndex(categoryIndex);
@@ -144,7 +144,7 @@ public class QuestionFragment extends Fragment {
         }else{
             Intent intent = new Intent(getActivity(), QuickQuizActivity.class);
             intent.putExtra("gameID", (int)gameID);
-            intent.putExtra("user", user);
+            intent.putExtra("session", session);
             intent.putExtra("result", result);
             intent.putExtra("from_question", true);
             intent.putExtra("category_index", categoryIndex);
@@ -155,7 +155,7 @@ public class QuestionFragment extends Fragment {
         }
     }
 
-    public void setUser(User user) { this.user = user; }
+    public void setSession(Session session) { this.session = session; }
     public void setQuestion(Question q){ this.intendedQuestion = q; }
 
     public void setCategoryIndex(int categoryIndex) {

@@ -18,8 +18,8 @@ import android.widget.Toast;
 
 import com.example.hp.gameapp.InitialScreen;
 import com.example.hp.gameapp.R;
+import com.example.hp.gameapp.Session;
 import com.example.hp.gameapp.Timer;
-import com.example.hp.gameapp.User;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,9 +29,9 @@ import java.util.Locale;
 
 public class MemoryGameFragment extends Fragment {
 
-    private User user;
     private long gameID;
     private boolean timePassed = false;
+    private Session session = new Session();
 
     private LinearLayout heartContainer;
     private LinearLayout targetContainer;
@@ -52,9 +52,9 @@ public class MemoryGameFragment extends Fragment {
     public void onStart() {
         super.onStart();
         if(flagConditions == null){
-            flagPaths = getFlags(user.getDifficulty());
+            flagPaths = getFlags(session.getDifficulty());
             toGridLayout = new ArrayList<>();
-            toGridLayout.addAll(flagPaths.subList(0,user.getDifficulty()));
+            toGridLayout.addAll(flagPaths.subList(0,session.getDifficulty()));
             toGridLayout.addAll(flagPaths);
             Collections.shuffle(toGridLayout);
             flagConditions = new ArrayList<>();
@@ -66,10 +66,10 @@ public class MemoryGameFragment extends Fragment {
             heartContainer = (LinearLayout) view.findViewById(R.id.heart_container);
             targetContainer = (LinearLayout) view.findViewById(R.id.target_flag_container);
             board = (GridView) view.findViewById(R.id.flags);
-            board.setNumColumns(user.getDifficulty());
+            board.setNumColumns(session.getDifficulty());
             timeView = (TextView) view.findViewById(R.id.timer);
             scoreView = (TextView) view.findViewById(R.id.score);
-            scoreView.setText(getString(R.string.score, user.getScore()));
+            scoreView.setText(getString(R.string.score, session.getScore()));
         }
 
         createGame();
@@ -85,7 +85,7 @@ public class MemoryGameFragment extends Fragment {
                 if(opened == 1) {
                     if (questionTimer.getSeconds() - openTime > 3) {
                         setTimeUp();
-                        if (user.getLives() < 1) {
+                        if (session.getLives() < 1) {
                             finishGame();
                         }
                         makeToast("Please select under 3 seconds");
@@ -95,7 +95,7 @@ public class MemoryGameFragment extends Fragment {
                     if(getID(openIndex) != getID(secondFlagIndex)) {
                         if(questionTimer.getSeconds() - secondOpenTime == 3){
                             setWrongAnswer();
-                            if(user.getLives()<1){
+                            if(session.getLives()<1){
                                 finishGame();
                             }
                         }
@@ -103,13 +103,13 @@ public class MemoryGameFragment extends Fragment {
                         flagConditions.set(openIndex, 2);
                         flagConditions.set(secondFlagIndex,2);
                         openTime = -5;
-                        user.setScore(user.getScore()+100);
-                        scoreView.setText(getString(R.string.score, user.getScore()));
+                        session.setScore(session.getScore()+100);
+                        scoreView.setText(getString(R.string.score, session.getScore()));
                     }
                 } else startInteraction();
                 if(checkGameFinished()) {
-                    user.setDifficulty(user.getDifficulty()+1);
-                    if(user.getDifficulty()>6) finishGame();
+                    session.setDifficulty(session.getDifficulty()+1);
+                    if(session.getDifficulty()>6) finishGame();
                     else{
                         restartGame();
                     }
@@ -155,7 +155,6 @@ public class MemoryGameFragment extends Fragment {
 
     private void finishGame(){
         Intent intent = new Intent(getActivity(), InitialScreen.class);
-        intent.putExtra("user", user);
         startActivity(intent);
     }
 
@@ -197,7 +196,7 @@ public class MemoryGameFragment extends Fragment {
     }
 
     private void createGame(){
-        int hearts = user.getLives();
+        int hearts = session.getLives();
 
         // add hearts
         for (int i=0;i<hearts;i++){
@@ -208,7 +207,7 @@ public class MemoryGameFragment extends Fragment {
         }
 
         // add targets
-        for(int i=0;i<user.getDifficulty();i++){
+        for(int i=0;i<session.getDifficulty();i++){
             ImageView flagImage = new ImageView(getActivity());
             AssetManager manager = getActivity().getAssets();
             InputStream streamImage = null;
@@ -308,7 +307,7 @@ public class MemoryGameFragment extends Fragment {
     }
 
     private void setWrongAnswer(){
-        user.setLives(user.getLives()-1);
+        session.setLives(session.getLives()-1);
         flagConditions.set(openIndex, 1);
         closeFromIndex(openIndex);
         flagConditions.set(secondFlagIndex,1);
@@ -316,23 +315,22 @@ public class MemoryGameFragment extends Fragment {
         openTime = -5;
         secondOpenTime = -5;
         secondFlagIndex = -5;
-        heartContainer.removeViewAt(user.getLives());
+        heartContainer.removeViewAt(session.getLives());
     }
 
     private void setTimeUp(){
-        user.setLives(user.getLives()-1);
+        session.setLives(session.getLives()-1);
         flagConditions.set(openIndex, 1);
         closeFromIndex(openIndex);
         openTime = -5;
         secondFlagIndex = -5;
         secondOpenTime = -5;
-        heartContainer.removeViewAt(user.getLives());
+        heartContainer.removeViewAt(session.getLives());
     }
 
     public void setGameID(long gameID) {
         this.gameID = gameID;
     }
-    public void setUser(User user) { this.user = user; }
 
     private void makeToast(String note){
         Toast.makeText(getActivity(), note, Toast.LENGTH_SHORT).show();

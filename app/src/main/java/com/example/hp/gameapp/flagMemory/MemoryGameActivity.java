@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.hp.gameapp.R;
-import com.example.hp.gameapp.User;
+import com.example.hp.gameapp.Session;
 
 public class MemoryGameActivity extends Activity {
 
@@ -16,10 +16,9 @@ public class MemoryGameActivity extends Activity {
 
         Intent intent = getIntent();
         int gameID = (int) intent.getExtras().get("gameID");
-        User user = intent.getParcelableExtra("user");
+        Session session = intent.getParcelableExtra("session");
 
         MemoryGameFragment gf = (MemoryGameFragment) getFragmentManager().findFragmentById(R.id.game_frag);
         gf.setGameID(gameID);
-        gf.setUser(user);
     }
 }
