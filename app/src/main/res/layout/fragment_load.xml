@@ -13,5 +13,4 @@
         app:indicatorName="PacmanIndicator"
         app:indicatorColor="@color/black"
         />
-
 </FrameLayout>

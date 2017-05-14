@@ -14,11 +14,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
 
     private static final int PASSWORD_LENGTH = 6;
     private FirebaseAuth auth;
+    private DatabaseReference mDatabase;
 
     EditText mailView;
     EditText passView;
@@ -43,6 +47,7 @@ public class Register extends AppCompatActivity {
         }
 
         auth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     public void onSignUp(View view){
@@ -60,12 +65,21 @@ public class Register extends AppCompatActivity {
                                 Toast.makeText(Register.this, "Sign up failed", Toast.LENGTH_SHORT).show();
                                 Log.e("Register", "Failed Registration", task.getException());
                             } else {
+                                writeNewUser(auth.getCurrentUser(), nameView.getText().toString(), locView.getText().toString());
                                 Intent i = new Intent(Register.this, MainActivity.class);
                                 startActivity(i);
                             }
                         }
                     });
         }
+    }
+
+    private void writeNewUser(FirebaseUser fuser, String name, String location) {
+        if(fuser != null){
+            User user = new User(name, fuser.getEmail(), location);
+            mDatabase.child("users").child(fuser.getUid()).setValue(user);
+        } else
+            makeToast("User null");
     }
 
     private boolean isEmailValid(String mail){
@@ -83,5 +97,9 @@ public class Register extends AppCompatActivity {
         outState.putString("password",passView.getText().toString());
         outState.putString("location", locView.getText().toString());
         super.onSaveInstanceState(outState);
+    }
+
+    private void makeToast(String note){
+        Toast.makeText(this, note, Toast.LENGTH_SHORT).show();
     }
 }

@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Session implements Parcelable{
-    private String name;
     private int score;
     private int lives;
     private int difficulty = 2;
@@ -17,7 +16,6 @@ public class Session implements Parcelable{
     }
 
     protected Session(Parcel in) {
-        name = in.readString();
         score = in.readInt();
         lives = in.readInt();
     }
@@ -33,14 +31,6 @@ public class Session implements Parcelable{
             return new Session[size];
         }
     };
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getScore() {
         return score;
@@ -68,7 +58,6 @@ public class Session implements Parcelable{
     @Override
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
         dest.writeInt(score);
         dest.writeInt(lives);
     }

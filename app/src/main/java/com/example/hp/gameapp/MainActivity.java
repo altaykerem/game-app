@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements GameListFragment.
                 break;
             case 2:
                 final DialogFragment newFragment = new LoadFragment();
-                newFragment.show(getFragmentManager(),"loader");
+                newFragment.show(getFragmentManager(), "loader");
                 FirebaseAuth.AuthStateListener sl = new FirebaseAuth.AuthStateListener() {
                     @Override
                     public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -60,12 +60,10 @@ public class MainActivity extends AppCompatActivity implements GameListFragment.
                             // launch login activity
                             startActivity(new Intent(MainActivity.this, InitialScreen.class));
                             finish();
-                        }else{
-                            makeToast("Check internet");
-                            newFragment.dismiss();
                         }
                     }
                 };
+                newFragment.dismiss();
                 auth.signOut();
                 auth.addAuthStateListener(sl);
                 break;

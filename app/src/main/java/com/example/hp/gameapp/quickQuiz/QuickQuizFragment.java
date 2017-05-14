@@ -2,8 +2,10 @@ package com.example.hp.gameapp.quickQuiz;
 
 
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.Gravity;
@@ -21,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuickQuizFragment extends Fragment {
-
     TextView nicknameView;
     LinearLayout categoryLayout;
     LinearLayout fields;
@@ -216,5 +217,12 @@ public class QuickQuizFragment extends Fragment {
 
     public void setNextQuestion(ArrayList<Integer> nextQuestion) {
         this.nextQuestion = nextQuestion;
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 }
