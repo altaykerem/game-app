@@ -239,6 +239,8 @@ public class MemoryGameFragment extends Fragment {
             toGridLayout = savedInstanceState.getStringArrayList("grid_paths");
             flagConditions = savedInstanceState.getIntegerArrayList("flag_conditions");
         }
+
+        new GetFlagsAsync(null).doInBackground();
     }
 
     @Override

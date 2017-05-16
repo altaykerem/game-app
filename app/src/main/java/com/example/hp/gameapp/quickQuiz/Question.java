@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Question implements Parcelable{
-    private String question, correctAnswer;
-    private List<String> answers = new ArrayList<>();
+    String question, correctAnswer;
+    List<String> answers = new ArrayList<>();
 
     Question(String question, String answer){
         this.question = question;

@@ -39,6 +39,7 @@ public class QuickQuizFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
         View view = getView();
         if (view != null) {
             nicknameView = (TextView) view.findViewById(R.id.score);
@@ -53,7 +54,6 @@ public class QuickQuizFragment extends Fragment {
                 nextQuestion.add(0);
             }
         }
-
         setAnswer();
         createGame();
         checkGame();
@@ -135,14 +135,14 @@ public class QuickQuizFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //new QuestionCallerAsync(getActivity(), categorizedQuestions).execute();
+
         if (savedInstanceState != null) {
             gameID = savedInstanceState.getLong("gameID");
             //user = savedInstanceState.getParcelable("user");
             states = savedInstanceState.getIntegerArrayList("states");
             nextQuestion = savedInstanceState.getIntegerArrayList("next_question");
             setFromQuestion(false);
-
-
         }
     }
 
@@ -197,8 +197,8 @@ public class QuickQuizFragment extends Fragment {
     public void setGameID(long gameID) {
         this.gameID = gameID;
     }
-    public void setUser(Session session) {  }
     public void setResult(boolean result) { this.result = result; }
+    public void setUser(Session session){}
     public void setFromQuestion(boolean fromQuestion) {
         this.fromQuestion = fromQuestion;
     }
