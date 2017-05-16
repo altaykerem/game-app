@@ -7,6 +7,8 @@
         <item>Quick Quiz</item>
         <item>Flag Memory</item>
         <item>Update Profile</item>
+        <item>Find Friends</item>
+        <item>High Scores</item>
         <item>Log Out</item>
     </string-array>
     <string name="target_flag_list">Target Flag List</string>
@@ -24,4 +26,8 @@
 
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
+    <string name="edit">Edit Profile</string>
+    <string name="quiz_scores">Quiz Game Scores</string>
+    <string name="flag_scores">Flag Game Scores</string>
+
 </resources>
