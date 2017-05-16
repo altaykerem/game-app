@@ -29,5 +29,6 @@
     <string name="edit">Edit Profile</string>
     <string name="quiz_scores">Quiz Game Scores</string>
     <string name="flag_scores">Flag Game Scores</string>
+    <string name="search">Search User</string>
 
 </resources>

@@ -100,6 +100,12 @@ public class MainActivity extends AppCompatActivity implements GameListFragment.
             case 2:
                 respondToFragment(R.id.content_frame, new Profile());
                 break;
+            case 3:
+                respondToFragment(R.id.content_frame, new FriendsFragment());
+                break;
+            case 4:
+                respondToFragment(R.id.content_frame, new HighScoreFragment());
+                break;
             case 5:
                 final DialogFragment newFragment = new LoadFragment();
                 newFragment.show(getFragmentManager(), "loader");
@@ -139,6 +145,9 @@ public class MainActivity extends AppCompatActivity implements GameListFragment.
                 break;
             case 2:
                 respondToFragment(R.id.content_frame, new Profile());
+                break;
+            case 3:
+                respondToFragment(R.id.content_frame, new FriendsFragment());
                 break;
             case 4:
                 respondToFragment(R.id.content_frame, new HighScoreFragment());

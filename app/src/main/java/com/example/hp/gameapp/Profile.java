@@ -60,8 +60,8 @@ public class Profile extends Fragment {
                 DataSnapshot userSnap = dataSnapshot.child("users").child(user.getUid());
                 nameView.setText((String) userSnap.child("username").getValue());
                 locView.setText((String) userSnap.child("location").getValue());
-                flagScore = (int) userSnap.child("flagScore").getValue();
-                quizScore = (int) userSnap.child("quizScore").getValue();
+                flagScore = (int)(long) userSnap.child("flagScore").getValue();
+                quizScore = (int)(long) userSnap.child("quizScore").getValue();
             }
 
             @Override
