@@ -23,7 +23,6 @@ public class HighScoreFragment extends Fragment {
 
     ListView quizScoreView;
     ListView flagScoreView;
-
     ArrayList<String> quizHighScores = new ArrayList<>();
     ArrayList<String> flagHighScores = new ArrayList<>();
 
