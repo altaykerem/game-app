@@ -98,13 +98,13 @@ public class MainActivity extends AppCompatActivity implements GameListFragment.
                 respondToFragment(R.id.fragment_container,f);
                 break;
             case 2:
-                respondToFragment(R.id.content_frame, new Profile());
+                respondToFragment(R.id.fragment_container, new Profile());
                 break;
             case 3:
-                respondToFragment(R.id.content_frame, new FriendsFragment());
+                respondToFragment(R.id.fragment_container, new FriendsFragment());
                 break;
             case 4:
-                respondToFragment(R.id.content_frame, new HighScoreFragment());
+                respondToFragment(R.id.fragment_container, new HighScoreFragment());
                 break;
             case 5:
                 final DialogFragment newFragment = new LoadFragment();
@@ -180,13 +180,15 @@ public class MainActivity extends AppCompatActivity implements GameListFragment.
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        drawerToggle.syncState();
+        if(drawerToggle != null)
+            drawerToggle.syncState();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        drawerToggle.onConfigurationChanged(newConfig);
+        if(drawerToggle != null)
+            drawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override

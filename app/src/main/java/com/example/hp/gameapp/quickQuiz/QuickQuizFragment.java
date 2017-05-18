@@ -167,15 +167,19 @@ public class QuickQuizFragment extends Fragment {
                         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                         ft.commit();
                     }else{
-                        Intent intent = new Intent(getActivity(), QuestionActivity.class);
-                        intent.putExtra("gameID", (int)gameID);
-                        //intent.putExtra("user", user);
-                        intent.putExtra("question", question);
-                        intent.putExtra("category_index", cIndex);
-                        intent.putExtra("question_index", qIndex);
-                        intent.putIntegerArrayListExtra("states", states);
-                        intent.putIntegerArrayListExtra("next_question", nextQuestion);
-                        startActivity(intent);
+                        QuestionFragment questionFragment = new QuestionFragment();
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        questionFragment.setGameID(gameID);
+                        //questionFragment.setSession(user);
+                        questionFragment.setQuestion(question);
+                        questionFragment.setCategoryIndex(cIndex);
+                        questionFragment.setQuestionIndex(qIndex);
+                        questionFragment.setStates(states);
+                        questionFragment.setNextQuestion(nextQuestion);
+                        ft.replace(R.id.content_frame, questionFragment);
+                        ft.addToBackStack(null);
+                        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                        ft.commit();
                     }
                 }
             }
