@@ -139,6 +139,4 @@ public class FriendsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
-
-
 }
