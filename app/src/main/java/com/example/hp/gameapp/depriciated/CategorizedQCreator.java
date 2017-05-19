@@ -1,4 +1,6 @@
-package com.example.hp.gameapp.quickQuiz;
+package com.example.hp.gameapp.depriciated;
+
+import com.example.hp.gameapp.quickQuiz.Category;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hp.gameapp.InitialScreen;
 import com.example.hp.gameapp.R;
@@ -21,13 +22,14 @@ import com.example.hp.gameapp.Session;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class QuickQuizFragment extends Fragment {
     TextView nicknameView;
     LinearLayout categoryLayout;
     LinearLayout fields;
 
-    ArrayList<Category> categorizedQuestions = CategorizedQCreator.getCategorizedQuestions();
+    ArrayList<Category> categorizedQuestions = new ArrayList<>();
     ArrayList<Integer> states, nextQuestion;
 
     private long gameID;
@@ -40,12 +42,20 @@ public class QuickQuizFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        if(isNetworkConnected())
+            new QuestionCallerAsync(getActivity(),this, categorizedQuestions).execute();
+        else
+            Toast.makeText(getActivity(),"Check network connection", Toast.LENGTH_LONG).show();
+
         View view = getView();
         if (view != null) {
             nicknameView = (TextView) view.findViewById(R.id.score);
             categoryLayout = (LinearLayout) view.findViewById(R.id.option_layout);
             //nicknameView.setText(user.getName() + ": " + getString(R.string.score, user.getScore()));
         }
+    }
+
+    public void gamePlay(){
         if(states == null){
             states = new ArrayList<>();
             nextQuestion = new ArrayList<>();

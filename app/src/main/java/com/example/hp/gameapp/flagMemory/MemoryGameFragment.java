@@ -239,7 +239,7 @@ public class MemoryGameFragment extends Fragment {
             flagConditions = savedInstanceState.getIntegerArrayList("flag_conditions");
         }
 
-        new GetFlagsAsync(null).doInBackground();
+        //new GetFlagsAsync(null).doInBackground();
     }
 
     @Override

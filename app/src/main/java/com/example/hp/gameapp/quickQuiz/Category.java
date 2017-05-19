@@ -2,17 +2,17 @@ package com.example.hp.gameapp.quickQuiz;
 
 import java.util.ArrayList;
 
-class Category {
+public class Category {
     private ArrayList<Question> questions = new ArrayList<>();
     private String categoryName;
 
-    Category(String name){
+    public Category(String name){
         categoryName = name;
     }
 
     String getCategoryName(){return categoryName;}
 
-    void addQuestion(String q, String a, ArrayList<String> wrongChoices){
+    public void addQuestion(String q, String a, ArrayList<String> wrongChoices){
         Question question = new Question(q,a);
         for(int i=0;i<wrongChoices.size();i++){
             question.addMultipleChoice(wrongChoices.get(i));
@@ -20,7 +20,7 @@ class Category {
         questions.add(question);
     }
 
-    ArrayList<Question> getQuestions(){
+    public ArrayList<Question> getQuestions(){
         return questions;
     }
 }

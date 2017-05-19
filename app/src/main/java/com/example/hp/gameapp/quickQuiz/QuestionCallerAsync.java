@@ -2,10 +2,12 @@ package com.example.hp.gameapp.quickQuiz;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.app.Fragment;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.hp.gameapp.LoadFragment;
+import com.example.hp.gameapp.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,19 +20,32 @@ import java.util.HashMap;
 class QuestionCallerAsync extends AsyncTask<String, String, ArrayList<Category>>{
     private static final String TAG = "Async question call";
     private Activity activity;
-    private ArrayList<Category> data = new ArrayList<>();
+    private ArrayList<Category> data;
+    private DialogFragment loadFragment;
+    private QuickQuizFragment fragment;
 
-    QuestionCallerAsync(Activity activity, ArrayList<Category> data){
+    QuestionCallerAsync(Activity activity, QuickQuizFragment f, ArrayList<Category> data){
         this.activity = activity;
         this.data = data;
+        fragment = f;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        loadFragment = new LoadFragment();
+        loadFragment.show(activity.getFragmentManager(), "loader");
+    }
+
+    @Override
+    protected void onPostExecute(ArrayList<Category> categories) {
+        super.onPostExecute(categories);
+        loadFragment.dismiss();
+        fragment.gamePlay();
     }
 
     @Override
     protected ArrayList<Category> doInBackground(String... params) {
-        final DialogFragment newFragment = new LoadFragment();
-        newFragment.show(activity.getFragmentManager(), "loader");
-
-        data = new ArrayList<>();
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.addValueEventListener(new ValueEventListener() {
 
@@ -51,8 +66,6 @@ class QuestionCallerAsync extends AsyncTask<String, String, ArrayList<Category>>
                     data.get((int)((long) qmap.get("category_id")) - 1)
                             .addQuestion((String) qmap.get("question"), (String) qmap.get("answer"), opts);
                 }
-
-                newFragment.dismiss();
                 Log.v(TAG, "done");
             }
 
