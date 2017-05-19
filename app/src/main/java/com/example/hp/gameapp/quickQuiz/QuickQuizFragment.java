@@ -22,7 +22,6 @@ import com.example.hp.gameapp.Session;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class QuickQuizFragment extends Fragment {
     TextView nicknameView;

@@ -6,7 +6,7 @@ import android.os.Parcelable;
 public class Session implements Parcelable{
     private int score;
     private int lives;
-    private int difficulty = 2;
+    private int difficulty = 4;
 
     private final static int INITIAL_LIVES = 4;
 

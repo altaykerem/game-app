@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.hp.gameapp.appFunctions.FriendRequests;
 import com.example.hp.gameapp.appFunctions.FriendsFragment;
 import com.example.hp.gameapp.appFunctions.HighScoreFragment;
 import com.example.hp.gameapp.appFunctions.Profile;
@@ -110,6 +111,9 @@ public class MainActivity extends AppCompatActivity implements GameListFragment.
                 respondToFragment(R.id.fragment_container, new HighScoreFragment());
                 break;
             case 5:
+                respondToFragment(R.id.fragment_container, new FriendRequests());
+                break;
+            case 6:
                 final DialogFragment newFragment = new LoadFragment();
                 newFragment.show(getFragmentManager(), "loader");
                 logOut();
@@ -156,6 +160,9 @@ public class MainActivity extends AppCompatActivity implements GameListFragment.
                 respondToFragment(R.id.content_frame, new HighScoreFragment());
                 break;
             case 5:
+                respondToFragment(R.id.content_frame, new FriendRequests());
+                break;
+            case 6:
                 final DialogFragment newFragment = new LoadFragment();
                 newFragment.show(getFragmentManager(), "loader");
                 logOut();

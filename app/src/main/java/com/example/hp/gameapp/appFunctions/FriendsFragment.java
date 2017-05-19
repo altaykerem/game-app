@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.hp.gameapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +39,7 @@ public class FriendsFragment extends Fragment {
     ListView userList;
     ListView friendList;
     ArrayList<String> users = new ArrayList<>();
+    ArrayList<String> userIDs = new ArrayList<>();
     ArrayList<String> friends = new ArrayList<>();
     ArrayAdapter<String> userAdapter;
 
@@ -62,7 +64,7 @@ public class FriendsFragment extends Fragment {
         ArrayAdapter<String> friendAdapter =
                 new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, friends);
         friendList.setAdapter(friendAdapter);
-        mDatabase.child("friends").addValueEventListener(findUser(friendAdapter));
+        mDatabase.child(user.getUid()).child("friends").addValueEventListener(findUser(friendAdapter));
 
         userAdapter =
                 new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, users);
@@ -71,15 +73,11 @@ public class FriendsFragment extends Fragment {
         userList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                mDatabase.child(userIDs.get(position)).child("requests").child(user.getUid()).setValue("1");
+                Toast.makeText(getActivity(),"Friend request sent", Toast.LENGTH_LONG).show();
             }
         });
 
-    }
-
-    private void addFriend(String username){
-        friends.add(username);
-        mDatabase.child("users").child(user.getUid()).child("friends").setValue(friends);
     }
 
     @Override
@@ -91,6 +89,7 @@ public class FriendsFragment extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                 Query userQuery = mDatabase.orderByChild("username").equalTo(query);
                 users.clear();
+                userAdapter.notifyDataSetChanged();
                 userQuery.addValueEventListener(findUser(userAdapter));
                 return false;
             }
@@ -109,6 +108,7 @@ public class FriendsFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
                     users.add((String) postSnapshot.child("username").getValue());
+                    userIDs.add(postSnapshot.getKey());
                     users.notifyDataSetChanged();
                 }
 

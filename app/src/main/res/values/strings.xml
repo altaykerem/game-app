@@ -9,6 +9,7 @@
         <item>Update Profile</item>
         <item>Find Friends</item>
         <item>High Scores</item>
+        <item>Friend Requests</item>
         <item>Log Out</item>
     </string-array>
     <string name="target_flag_list">Target Flag List</string>
@@ -32,5 +33,6 @@
     <string name="search">Search User</string>
     <string name="user_query">User Query</string>
     <string name="friend_list">Friend List</string>
+    <string name="requests">Friend Requests</string>
 
 </resources>
