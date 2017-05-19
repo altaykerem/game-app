@@ -1,4 +1,4 @@
-package com.example.hp.gameapp.flagMemory;
+package com.example.hp.gameapp.depriciated;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.example.hp.gameapp.R;
 import com.example.hp.gameapp.Session;
+import com.example.hp.gameapp.flagMemory.MemoryGameFragment;
 
 public class MemoryGameActivity extends Activity {
 

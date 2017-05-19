@@ -23,20 +23,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".flagMemory.MemoryGameActivity" />
-        <activity android:name=".quickQuiz.QuickQuizActivity" />
-        <activity android:name=".quickQuiz.QuestionActivity" />
+        <activity android:name=".depriciated.MemoryGameActivity" />
+        <activity android:name=".depriciated.QuickQuizActivity" />
+        <activity android:name=".depriciated.QuestionActivity" />
 
-        <activity android:name=".Register" />
+        <activity android:name=".appFunctions.Register" />
         <service
-            android:name=".FirebaseGameMessagingService"
+            android:name=".services.FirebaseGameMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
         <service
-            android:name=".FirebaseIDServiceGame"
+            android:name=".services.FirebaseIDServiceGame"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>

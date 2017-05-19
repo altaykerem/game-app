@@ -20,7 +20,6 @@ import com.example.hp.gameapp.InitialScreen;
 import com.example.hp.gameapp.R;
 import com.example.hp.gameapp.Session;
 import com.example.hp.gameapp.Timer;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;

@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
-class Question implements Parcelable{
+public class Question implements Parcelable{
     String question, correctAnswer;
     List<String> answers = new ArrayList<>();
 

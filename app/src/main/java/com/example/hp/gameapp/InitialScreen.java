@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.content.Intent;
 
+import com.example.hp.gameapp.appFunctions.Register;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

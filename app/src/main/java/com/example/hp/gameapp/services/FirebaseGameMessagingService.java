@@ -1,4 +1,4 @@
-package com.example.hp.gameapp;
+package com.example.hp.gameapp.services;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
+import com.example.hp.gameapp.MainActivity;
+import com.example.hp.gameapp.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 

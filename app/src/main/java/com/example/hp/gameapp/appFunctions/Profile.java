@@ -1,4 +1,4 @@
-package com.example.hp.gameapp;
+package com.example.hp.gameapp.appFunctions;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.hp.gameapp.R;
+import com.example.hp.gameapp.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

@@ -1,4 +1,4 @@
-package com.example.hp.gameapp.quickQuiz;
+package com.example.hp.gameapp.depriciated;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.os.PersistableBundle;
 
 import com.example.hp.gameapp.R;
 import com.example.hp.gameapp.Session;
+import com.example.hp.gameapp.quickQuiz.QuickQuizFragment;
 
 public class QuickQuizActivity extends Activity{
 

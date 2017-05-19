@@ -17,6 +17,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.hp.gameapp.appFunctions.FriendsFragment;
+import com.example.hp.gameapp.appFunctions.HighScoreFragment;
+import com.example.hp.gameapp.appFunctions.Profile;
 import com.example.hp.gameapp.flagMemory.MemoryGameFragment;
 import com.example.hp.gameapp.quickQuiz.QuickQuizFragment;
 import com.google.firebase.auth.FirebaseAuth;
